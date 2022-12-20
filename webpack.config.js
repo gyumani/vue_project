@@ -5,7 +5,7 @@ var webpack = require("webpack");
 module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
-      template: "./index.html"
+      template: "./index-build.html"
     })
   ],
   entry: "./src/main.js",
