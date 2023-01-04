@@ -14,11 +14,6 @@ import TodoInput from "./components/TodoInput.vue";
 import TodoList from "./components/TodoList.vue";
 
 export default {
-  data() {
-    return {
-      todoItems: []
-    };
-  },
   name: "App",
   components: {
     TodoHeader,
