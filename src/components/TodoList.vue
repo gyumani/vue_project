@@ -9,13 +9,13 @@
         <i
           class="checkBtn fas fa-check"
           v-bind:class="{ checkBtnCompleted: todoItem.completed }"
-          v-on:click="toggleComplete(todoItem, index)"
+          v-on:click="toggleComplete({ todoItem, index })"
         ></i>
         <span v-bind:class="{ textCompleted: todoItem.completed }">{{
           todoItem.item
         }}</span>
 
-        <span class="removeBtn" v-on:click="removeTodo(todoItem, index)">
+        <span class="removeBtn" v-on:click="removeTodo({ todoItem, index })">
           <i class="fas fa-trash-alt "></i>
         </span>
       </li>
@@ -26,13 +26,12 @@
 <script>
 export default {
   name: "TodoList",
-  props: ["propsdata"],
   methods: {
-    removeTodo(todoItem, index) {
-      this.$emit("removeItem", todoItem, index);
+    removeTodo(todoItemMap) {
+      this.$store.commit("removeOneItem", todoItemMap);
     },
-    toggleComplete(todoItem, index) {
-      this.$emit("toggleItem", todoItem, index);
+    toggleComplete(todoItemMap) {
+      this.$store.commit("toggleOneItem", todoItemMap);
     }
   }
 };
