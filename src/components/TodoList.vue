@@ -2,7 +2,7 @@
   <div>
     <transition-group name="list" tag="ul">
       <li
-        v-for="(todoItem, index) in this.$store.state.todoItems"
+        v-for="(todoItem, index) in this.todoItems"
         v-bind:key="todoItem.item"
         class="shadow"
       >
@@ -24,15 +24,27 @@
 </template>
 
 <script>
+import { mapGetters, mapMutations } from "vuex";
 export default {
   name: "TodoList",
   methods: {
-    removeTodo(todoItemMap) {
-      this.$store.commit("removeOneItem", todoItemMap);
-    },
-    toggleComplete(todoItemMap) {
-      this.$store.commit("toggleOneItem", todoItemMap);
-    }
+    ...mapMutations({
+      removeTodo: "removeOneItem",
+      toggleComplete: "toggleOneItem"
+    })
+    // removeTodo(todoItemMap) {
+    //   this.$store.commit("removeOneItem", todoItemMap);
+    // },
+    // toggleComplete(todoItemMap) {
+    //   this.$store.commit("toggleOneItem", todoItemMap);
+    // }
+  },
+  computed: {
+    // todoItems() {
+    //   return this.$store.getters.storedTodoItems;
+    // }
+    // ...mapGetters(["storedTodoItems"])
+    ...mapGetters({ todoItems: "storedTodoItems" })
   }
 };
 </script>
